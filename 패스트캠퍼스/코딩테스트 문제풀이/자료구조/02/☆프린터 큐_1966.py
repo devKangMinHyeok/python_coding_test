@@ -20,4 +20,3 @@ def sol () :
 for i in range(num_test):
     print(sol()) 
     
-        
