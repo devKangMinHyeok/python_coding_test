@@ -1,22 +1,19 @@
-num_test = int(input())
-    
-def sol () :
-    answer = 1
-    n, m = map(int, input().split())
-    data = list(map(int, input().split()))
-    maxNum = max(data)
-    i = 0
-    while (True) :
-        i %= n
-        if (maxNum == data[i]) :
-            if (i == m) : return answer
-            else :
-                data[i] = 0
-                maxNum = max(data)
-                answer += 1
-        i += 1
-            
+test_case = int(input())
 
-for i in range(num_test):
-    print(sol()) 
+for _ in range(test_case):
+    n, m = map(int, input().split())
+    queue = list(map(int, input().split()))
+    queue = [(i, num) for i , num in enumerate(queue)]
+    counter = 1
     
+    while (queue) :
+        if (queue[0][1] == max(queue, key= lambda x : x[1])[1]):
+            if (queue[0][0] == m) : break
+            else :
+                queue.pop(0)
+                counter += 1
+        else :
+            queue.append((queue.pop(0)))
+    
+    print(counter)
+            

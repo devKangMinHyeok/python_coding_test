@@ -44,10 +44,18 @@ print('\n'.join(result))
 
 서로 다른 list를 합칠때
 
-```
+```python
 list1 = [1,2]
 list2 = [3,4]
 result = list1 + list2
+# [1,2,3,4]
+```
+
+```python
+list1 = [1,2]
+list2 = [3,4]
+list1.extend(list2)
+print(list1)
 # [1,2,3,4]
 ```
 
@@ -163,4 +171,14 @@ my_list = [12, 65, 54, 39, 102, 339, 221, 50, 70, ]
 result = list(filter(lambda x: (x % 13 == 0), my_list))
 # [65, 39, 221]
 
+```
+
+### exit
+
+exit을 사용하면, 어디에서나 프로그램을 종료할 수 있다.
+
+함수가 아닌 경우, return으로 종료할 수 없으므로, 이럴 때 사용할 수 있다.
+
+```python
+exit(0)
 ```

@@ -12,9 +12,9 @@ for _ in range(n):
             if stack2: stack1.append(stack2.pop())
         elif (s == "-"):
             if stack1: stack1.pop()
-            
         else:
             stack1.append(s)
+    
     stack2.reverse()
     result = "".join(stack1 + stack2)
     print(result)
