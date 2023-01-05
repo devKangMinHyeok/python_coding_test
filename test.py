@@ -1,4 +1,10 @@
-list1 = [1,2]
-list2 = [3,4]
-list1.extend(list2)
-print(list1)
+from heapq import heappush, heappop
+
+list = []
+heappush(list,1)
+heappush(list,2)
+heappush(list,3)
+heappush(list,10)
+heappush(list,4)
+heappush(list,6)
+print(list)
