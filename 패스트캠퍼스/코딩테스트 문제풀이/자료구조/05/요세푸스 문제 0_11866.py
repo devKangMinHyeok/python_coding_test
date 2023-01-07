@@ -1,9 +1,14 @@
+from collections import deque
+
 n, k = map(int, input().split())
-queue = [i for i in range(1,n+1)]
+data = [i for i in range(1,n+1)]
+deq = deque(data)
 answer = []
-while (queue) :
+
+while deq:
     for _ in range(k-1):
-        queue.append(queue.pop(0))
-    answer.append(str(queue.pop(0)))
+        deq.rotate(-1)
+    answer.append(str(deq.popleft()))
+
 answer = ", ".join(answer)
-print("<{}>".format(answer))
+print("<"+answer+">")
