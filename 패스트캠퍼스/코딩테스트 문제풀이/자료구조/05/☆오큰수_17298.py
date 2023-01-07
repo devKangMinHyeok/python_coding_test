@@ -1,13 +1,17 @@
 n = int(input())
-data = list(map(int, input().split(" ")))
-result = []
-for i in range(n-1):
-    target = data[i]
-    answer = -1
-    for j in range(i+1, n):
-        if (target < data[j]): 
-            answer = data[j]
-            break
-    result.append(str(answer))
-result.append("-1")
+data = list(map(int, input().split()))
+stack = []
+result = ["-1"] * n
+
+for i, num in enumerate(data):
+    if (not stack or stack[-1][1] > num):
+        stack.append((i, num))
+    else :
+        while (stack and stack[-1][1] < num):
+            index, _ = stack.pop()
+            result[index] = str(num)
+        stack.append((i, num))
+
 print(" ".join(result))
+        
+        
