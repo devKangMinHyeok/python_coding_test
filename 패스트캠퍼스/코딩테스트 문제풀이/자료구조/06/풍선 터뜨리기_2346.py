@@ -1,15 +1,16 @@
+from collections import deque
+
 n = int(input())
-queue = list(map(int, input().split(" ")))
-queue = [(i, num) for i, num in enumerate(queue)]
+data = list(map(int, input().split()))
+queue = deque([(i+1,num) for i, num in enumerate(data)])
 answer = []
-while (queue) :
-    target = queue.pop(0)
-    answer.append(str(target[0]+1))
-    if not queue: break
-    if target[1] > 0:
-        for _ in range(target[1]-1):
-            queue.append(queue.pop(0))
-    else :
-        for _ in range(abs(target[1])):
-            queue.insert(0, queue.pop())
+
+while queue:
+    i, target = queue.popleft()
+    answer.append(str(i))
+    if target > 0:
+        for _ in range(target-1): queue.rotate(-1)
+    else:
+        for _ in range(abs(target)): queue.rotate(1)
+
 print(" ".join(answer))
