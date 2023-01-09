@@ -126,6 +126,49 @@ print(deq)
 
 ---
 
+### heapq
+
+```python
+from heapq import heappush, heappop
+
+heap = []
+
+heappush(heap, 4)
+heappush(heap, 1)
+heappush(heap, 7)
+heappush(heap, 3)
+
+print(heap)
+# [1,3,7,4]
+
+print(heappop(heap))
+# 1
+
+print(heap)
+# [3,7,4]
+```
+
+```python
+from heapq import heapify
+
+heap = [4, 1, 7, 3, 8, 5]
+heapify(heap)
+print(heap)
+# [1, 3, 5, 4, 8, 7]
+```
+
+```python
+from heapq import nsmallest, nlargest
+
+print(nsmallest(3, [4, 1, 7, 3, 8, 5])[-1])
+# 4
+
+print(nlargest(3, [4, 1, 7, 3, 8, 5])[-1])
+# 5
+```
+
+---
+
 # Functions
 
 ### max, min 함수

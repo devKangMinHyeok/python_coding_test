@@ -1,10 +1,7 @@
-from heapq import heappush, heappop
+from heapq import nsmallest, nlargest
 
-list = []
-heappush(list,1)
-heappush(list,2)
-heappush(list,3)
-heappush(list,10)
-heappush(list,4)
-heappush(list,6)
-print(list)
+print(nsmallest(3, [4, 1, 7, 3, 8, 5])[-1])
+# 4 
+
+print(nlargest(3, [4, 1, 7, 3, 8, 5])[-1])
+# 5

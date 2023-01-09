@@ -1,24 +1,23 @@
-from itertools import combinations
-from heapq import heappush, nsmallest
+import sys
+from heapq import heapify, heappush, heappop
+input = sys.stdin.readline
 
 k, n = map(int, input().split())
-org_primes = list(map(int, input().split()))
-primes = [i for i in org_primes]
-heap = []
-count = 0
-while len(heap) <= n or min(primes) < nsmallest(n,heap)[-1]:
-    if (count) : primes = [num ** (count+1) for num in org_primes]
-    count += 1
-    print(primes)
-    combi = []
-    for i in range(1,k+1):
-        combi += list(combinations(primes,i))
-    for comb in combi:
-        result = 1
-        for num in comb:
-            result *= num
-        heappush(heap, result)
-    
+primes = list(map(int, input().split()))
+min_heap = [i for i in primes]
+visited = set()
+heapify(min_heap)
+answer = -1
+max_value = max(primes)
 
-print(nsmallest(n,heap))
-print(nsmallest(n,heap)[-1])
+for i in range(n):
+    answer = heappop(min_heap)
+    for prime in primes:
+        target = prime * answer
+        if len(min_heap) > n and target > max_value: continue
+        if target not in visited:
+            heappush(min_heap, target)
+            visited.add(target)
+            if target > max_value: max_value = target
+
+print(answer)
