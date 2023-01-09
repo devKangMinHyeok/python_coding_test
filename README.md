@@ -232,6 +232,87 @@ print(min(g, h, i, j, k))   # 반환 : [0]
 
 ---
 
+### sort, sorted
+
+sorted는 기존의 리스트를 변경하는 것이 아니라 정렬된 새로운 리스트를 반환한다.
+
+```python
+list1 = [4, 2, 3, 5, 1]
+
+print(sorted(list1))
+# [1, 2, 3, 4, 5]
+
+print(list1)
+# [4, 2, 3, 5, 1]
+
+```
+
+리스트의 메소드인 sort()를 사용하여도 정렬이 된다. 이 경우에는 리스트 자체를 변경해 버린다.
+
+```python
+list1 = [4, 2, 3, 5, 1]
+list1.sort()
+
+print(list1)
+# [1, 2, 3, 4, 5]
+```
+
+sort()는 리스트만을 위한 메소드이지만 sorted() 함수는 어떤 이터러블 객체도 받을 수 있다.
+
+```python
+students = [
+        ('홍길동', 3.9, 2016303),
+        ('김철수', 3.0, 2016302),
+        ('최자영', 4.3, 2016301),
+]
+
+print(sorted(students, key=lambda student: student[2]))
+# [('최자영', 4.3, 2016301), ('김철수', 3.0, 2016302), ('홍길동', 3.9, 2016303)]
+```
+
+list.sort()와 내장함수 sorted()는 모두 reverse 매개변수를 받는다. reverse 변수는 부울형으로 True 이면 내림차순이 된다.
+
+```python
+students = [
+        ('홍길동', 3.9, 2016303),
+        ('김철수', 3.0, 2016302),
+        ('최자영', 4.3, 2016301),
+]
+
+print(sorted(students, key=lambda student: student[2], reverse=True))
+# [('홍길동', 3.9, 2016303), ('김철수', 3.0, 2016302), ('최자영', 4.3, 2016301)]
+```
+
+my_dict.items()를 출력해보면 다음과 같이 Tuple pair로 이루어진 List가 리턴된다.
+
+```python
+my_dict = {'c': 3, 'a': 1, 'b': 2, 'e': 1, 'd': 2}
+print(my_dict.items())
+# dict_items([('c', 3), ('a', 1), ('b', 2), ('e', 1), ('d', 2)])
+```
+
+Dictionary sort는 다음과 같이 수행된다.
+
+key를 기준으로 정렬
+
+```python
+my_dict = {'c': 3, 'a': 1, 'b': 2, 'e': 1, 'd': 2}
+
+sorted_dict = sorted(my_dict.items(), key = lambda item: item[0])
+print(sorted_dict)
+# [('a', 1), ('b', 2), ('c', 3), ('d', 2), ('e', 1)]
+```
+
+item을 기준으로 정렬
+
+```python
+sorted_dict = sorted(my_dict.items(), key = lambda item: item[1])
+print(sorted_dict)
+# [('a', 1), ('e', 1), ('b', 2), ('d', 2), ('c', 3)]
+```
+
+---
+
 ### lambda
 
 ```python
@@ -253,6 +334,8 @@ result = list(filter(lambda x: (x % 13 == 0), my_list))
 
 ```
 
+---
+
 ### exit
 
 exit을 사용하면, 어디에서나 프로그램을 종료할 수 있다.
@@ -262,6 +345,8 @@ exit을 사용하면, 어디에서나 프로그램을 종료할 수 있다.
 ```python
 exit(0)
 ```
+
+---
 
 ### ord
 
@@ -280,3 +365,5 @@ ord('a')
 char(97)
 # 'a'
 ```
+
+---

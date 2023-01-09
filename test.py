@@ -1,7 +1,8 @@
-from heapq import nsmallest, nlargest
+students = [
+        ('홍길동', 3.9, 2016303),
+        ('김철수', 3.0, 2016302),
+        ('최자영', 4.3, 2016301),
+]
 
-print(nsmallest(3, [4, 1, 7, 3, 8, 5])[-1])
-# 4 
-
-print(nlargest(3, [4, 1, 7, 3, 8, 5])[-1])
-# 5
+print(sorted(students, key=lambda student: student[2], reverse=True))
+# [('홍길동', 3.9, 2016303), ('김철수', 3.0, 2016302), ('최자영', 4.3, 2016301)]
