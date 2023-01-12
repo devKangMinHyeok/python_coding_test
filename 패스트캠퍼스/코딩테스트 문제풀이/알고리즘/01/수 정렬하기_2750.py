@@ -9,3 +9,5 @@ for _ in range(n):
 data.sort()
 for num in data:
     print(num)
+
+## 선택 정렬로도 풀어보기

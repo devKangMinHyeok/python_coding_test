@@ -12,3 +12,5 @@ table = sorted(table.items())
 for key, num in table:
     for _ in range(num):
         print(key)
+        
+# 배열을 이용한 counting sort로 풀어보기
