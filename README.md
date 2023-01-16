@@ -89,6 +89,31 @@ queue = [(i, num) for i, num in enumerate(queue)]
 
 ---
 
+### 얕은 복사 vs 깊은 복사
+
+** 얕은 복사: ** '참조'만 복사 (주소 값 복사)
+** 깊은 복사: ** '실제 값'을 '새로운' 메모리에 복사
+
+**Point**
+
+- immutable 객체 (int, float 등)
+
+  값이 변경되면 주소가 바뀌기 때문에, 고려 X
+
+- mutable 객체(list, set, dictionary 등)
+
+  mutable 객체는 얕은 복사, 깊은 복사 주의 필요!
+
+**Usage**
+
+`=` : 얕은 복사
+
+`[:]`, `copy()`, `copy.copy()` : 반만 깊은 복사, 다중 리스트의 경우는 내부 리스트가 얕은 복사로 가져와짐
+
+`copy.deepcopy` : 깊은 복사 (내부 요소까지 완벽히 새로운 메모리에 할당)
+
+---
+
 # Data Structure
 
 ### deque
@@ -362,6 +387,20 @@ exit을 사용하면, 어디에서나 프로그램을 종료할 수 있다.
 
 ```python
 exit(0)
+```
+
+---
+
+### eval
+
+문자열로 표현되어 있는 표현식의 값을 평가해서 리턴하는 함수
+
+```python
+exp = "1 + 2"
+result = eval(exp)
+
+print(result)
+# 3
 ```
 
 ---
