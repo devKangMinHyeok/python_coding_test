@@ -1,36 +1,23 @@
-N, r, c = map(int, input().split())
-length = 2 ** N
-count = 0
+N, Y, X = map(int, input().split())
+answer = 0
 
-def search (s1,s2,e1,e2):
-    global count
-    if e1-s1 == 1 and e2 - s2 == 1:
-        if s1 == r and s2 == c: 
-            print(count)
-            exit(0)
-        if s1 == r and e2 == c:
-            print(count + 1)
-            exit(0)
-        if e1 == r and s2 == c:
-            print(count + 2)
-            exit(0)
-        if e1 == r and e2 == c:
-            print(count + 3)
-            exit(0)
-        count += 4
-    else:
-        offset = ((e1 - s1) + 1) // 2
-        nexts = [
-            [s1,        s2,        e1-offset, e2-offset],
-            [s1,        s2+offset, e1-offset, e2],
-            [s1+offset, s2,        e1,        e2-offset],
-            [s1+offset, s2+offset, e1,        e2]
-        ]
-        for target in nexts:
-            next_s1, next_s2, next_e1, next_e2 = target
-            if (next_s1 <= r and r <= next_e1 and next_s2 <= c and c <= next_e2):
-                search(next_s1, next_s2, next_e1, next_e2)
-            else:
-                count += (next_e1 - next_s1 + 1) ** 2
+def solve(size, x, y):
+    global answer
+    if size == 2:
+        for [dy, dx] in [[0,0], [0,1], [1, 0], [1,1]]:
+            ny, nx = y+dy, x+dx
+            if ny == Y and nx == X:
+                print(answer)
+                return
+            answer += 1
+        return 
+    next = size / 2
+    for [nx, ny] in [[x,y], [x+next, y], [x, y+next], [x+next, y+next]]:
+        end_ny, end_nx = ny + next - 1, nx + next - 1
+        if ny > Y or nx > X or end_ny < Y or end_nx < X:
+            answer += int(next ** 2)
+        else: 
+            solve(next, nx, ny)
+    
 
-search(0,0,length-1, length-1)
+solve(2 ** N, 0, 0)
