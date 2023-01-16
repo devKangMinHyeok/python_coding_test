@@ -114,6 +114,16 @@ queue = [(i, num) for i, num in enumerate(queue)]
 
 ---
 
+### string
+
+```python
+
+
+
+```
+
+---
+
 # Data Structure
 
 ### deque

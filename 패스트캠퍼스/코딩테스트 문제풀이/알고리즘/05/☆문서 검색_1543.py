@@ -1,8 +1,18 @@
-strings = input()
+total = input()
 target = input()
-count = 0
-while (target in strings):
-    t_index = strings.index(target)
-    strings = strings[:t_index] + " " + strings[t_index+len(target):]
-    count += 1
-print(count)
+
+start = 0
+end = len(target) - 1
+answer = 0
+
+while end <= len(total)-1:
+    sliced = total[start:end+1]
+    if sliced == target:
+        answer += 1
+        start = end + 1
+        end = start + len(target) - 1
+    else:
+        start += 1
+        end += 1
+
+print(answer)
