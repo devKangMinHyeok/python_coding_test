@@ -2,69 +2,62 @@ import sys
 input = sys.stdin.readline
 
 class Node :
-    def __init__(self, val, left, right):
-        self.val = val
+    def __init__ (self, value, left, right):
+        self.value = value
         self.left = left
         self.right = right
-        self.col = -1
-        self.row = -1
-
+        self.order = -1
+        self.level = -1
 
 n = int(input())
+ordering = 1
 tree = {}
-table = {}
-col_index = 1
-height = 1
+max_level = 0
 
 for _ in range(n):
-    val, left, right = map(int, input().split())
-    table[left] = True
-    table[right] = True
-    tree[val] = Node(val, left, right)
+    v, l, r = map(int, input().split())
+    tree[v] = Node(v, l, r)
 
+def inOrder (root):
+    global ordering
+    if root.left != -1: inOrder(tree[root.left])
+    root.order = ordering
+    ordering += 1
+    if root.right != -1: inOrder(tree[root.right])
 
-root = 0
+def find_root(tree, n):
+    check = [False] * (n+1)
+    for value in tree:
+        node = tree[value]
+        if node.left != -1: check[node.left] = True
+        if node.right != -1: check[node.right] = True
+    for i in range(1,n+1):
+        if not check[i]:
+            return i
 
-for i in range(1,n+1):
-    if i not in table: 
-        root = i
-        break
-    
-def inOrder (node):
-    global col_index
-    if node.left != -1: inOrder(tree[node.left])
-    node.col = col_index
-    col_index += 1
-    if node.right != -1: inOrder(tree[node.right])
+def leveling(root, level):
+    global max_level
+    max_level = max(level, max_level)
+    root.level = level
+    if root.left != -1: leveling(tree[root.left], level+1)
+    if root.right != -1: leveling(tree[root.right], level+1)
 
+root = find_root(tree, n)
 inOrder(tree[root])
+leveling(tree[root], 1)
 
-def bfs(node, level):
-    global height
-    if height < level: height = level
-    if node.val == -1: return
-    node.row = level
-    if node.left != -1: bfs(tree[node.left], level+1)
-    if node.right != -1: bfs(tree[node.right], level+1)
+width = [[] for _ in range(max_level+1)]
 
-bfs(tree[root], 1)
+for value in tree:
+    node = tree[value]
+    width[node.level].append(node.order)
 
-matrix = [[] for _ in range(height+1)] 
+for i, level_ws in enumerate(width):
+    if level_ws: width[i] = max(level_ws) - min(level_ws) + 1
+    else: width[i] = 0
 
-for key in tree:
-    node = tree[key]
-    matrix[node.row].append(node.col)
+max_width = max(width)
+max_index = width.index(max_width)
 
-for i, level_arr in enumerate(matrix):
-    if not level_arr: 
-        matrix[i] = 0
-        continue
-    matrix[i] = max(level_arr) - min(level_arr) + 1
-
-max_width = max(matrix)
-
-for i, num in enumerate(matrix):
-    if max_width == num: 
-        print(i, max_width)
-        break
+print(max_index, max_width)
     
