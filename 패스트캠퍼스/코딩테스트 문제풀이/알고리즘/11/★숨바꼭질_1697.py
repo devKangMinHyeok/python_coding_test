@@ -2,18 +2,20 @@ from collections import deque
 
 n, k = map(int, input().split())
 
-def bfs (start, end):
-    queue = deque([(start, 0)])
-    visit = set()
-    visit.add(start)
-    while queue:
-        val, level = queue.popleft()
-        if val == end:
-            return level
-        for next_val in [val-1, val+1, val*2]:
-            if next_val >= 0 and next_val <= 100000 and next_val not in visit:
-                visit.add(next_val)
-                queue.append((next_val, level+1))
-            
+queue = deque([(n,0)])
+visit = [False] * 100001
+visit[n] = True
 
-print(bfs(n, k))
+if n == k:
+    print(0)
+    exit(0)
+
+while queue:
+    point, level = queue.popleft()
+    for d_point in [point - 1, point + 1, point * 2]:
+        if d_point >= 0 and d_point <= 100000 and not visit[d_point]:
+            queue.append((d_point, level + 1))
+            visit[d_point] = True
+            if d_point == k:
+                print(level+1)
+                exit(0) 
