@@ -7,10 +7,12 @@ input = sys.stdin.readline
 
 n = int(input())
 data = list(map(int, input().split()))
-DP = [1] * n
 
-for i in range(1,n):
-    for j in range(0,i+1):
-        if data[i] > data[j]: DP[i] = max(DP[j]+1, DP[i])
+dp = [1 for _ in range(n)]
 
-print(max(DP))
+for i in range(n):
+    for j in range(i):
+        if data[j] < data[i]:
+            dp[i] = max(dp[i], dp[j]+1)
+        
+print(max(dp))
