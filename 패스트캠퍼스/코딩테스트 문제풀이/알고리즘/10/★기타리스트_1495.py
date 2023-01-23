@@ -1,23 +1,22 @@
 import sys
 input = sys.stdin.readline
 
-n, start, max_v = map(int, input().split())
-V = list(map(int, input().split()))
-DP = [False] * (max_v + 1)
-DP[start] = True
+n, start, max_num = map(int, input().split())
+data = list(map(int, input().split()))
 
-for vol in V:
-    new_DP = [False] * (max_v + 1)
-    for i in range(len(DP)):
-        if DP[i]:
-            if i-vol >= 0: new_DP[i-vol] = True
-            if i+vol <= max_v: new_DP[i+vol] = True
-    DP = new_DP
+able = [False] * (max_num + 1)
+able[start] = True
 
-for i in range(len(DP)-1, -1, -1):
-    if DP[i]: 
-        print(i)
-        exit(0)
-print(-1)
-            
+for num in data:
+    new_able = [False] * (max_num + 1)
+    for i in range(len(able)):
+        if able[i]:
+            if i - num >= 0: new_able[i-num] = True
+            if i + num <= max_num: new_able[i+num] = True
+    able = new_able
 
+answer = -1
+for i in range(len(able)):
+    if able[i]: answer = i
+
+print(answer)
