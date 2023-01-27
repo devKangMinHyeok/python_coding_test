@@ -6,30 +6,24 @@ T = int(input())
 
 for _ in range(T):
     n, d, c = map(int, input().split())
-    graph = [[] for i in range(n+1)]
+    graph = [[] for __ in range(n+1)]
     distance = [float("inf")] * (n+1)
-    
-    for _ in range(d):
+    for __ in range(d):
         a, b, s = map(int, input().split())
-        graph[b].append((s,a))
-    
-    queue = []
-    heappush(queue, (0,c))
+        graph[b].append((a,s))
     distance[c] = 0
-    
+    queue = []
+    heappush(queue, c)
     while queue:
-        dist, target = heappop(queue)
-        if dist > distance[target]: continue
-        for next_dist, next_target in graph[target]:
-            if dist + next_dist < distance[next_target]:
-                distance[next_target] = dist + next_dist
-                heappush(queue, (distance[next_target], next_target))
-    
-    count = 0
-    max_val = 0
-    for i in range(len(distance)):
-        if distance[i] != float("inf"):
-            count += 1
-            max_val = max(max_val, distance[i])
-    print(count, max_val)
-    
+        target = heappop(queue)
+        for next_target, dist in graph[target]:
+            if distance[next_target] > distance[target] + dist:
+                distance[next_target] = distance[target] + dist
+                heappush(queue, next_target)
+    counter = 0
+    max_time = 0
+    for num in distance:
+        if num != float("inf"):
+            counter += 1
+            max_time = max(max_time, num)
+    print(counter, max_time)
