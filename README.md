@@ -8,6 +8,16 @@
 >
 > -> 문제에서 요구하는 대로 단순하게 구현한다
 
+> Stack
+>
+> Stack을 사용하는 경우 두가지 로직을 핵심으로 사용한다.
+>
+> 어떠한 조건에 의해 pop을 반복적으로 수행하는 것
+>
+> Stack의 top과 비교하여 이 반복작업을 멈출지 판단하는 것
+>
+> 즉, Stack의 상단의 원소와의 비교가 핵심이다.
+
 ---
 
 ### input
@@ -116,10 +126,40 @@ queue = [(i, num) for i, num in enumerate(queue)]
 
 ### string
 
+**String to List**
+
 ```python
+a= "I love python"
+print(a.split()) #공백을 기준으로 나눈다.
 
+>>['I','love','python']
+```
 
+```python
+a='I/love/python'
+print(a.split('/'))
 
+>>['I', 'love', 'python']
+```
+
+```python
+a="I love python"
+print(list(a))
+
+>>['I', ' ', 'l', 'o', 'v', 'e', ' ', 'p', 'y', 't', 'h', 'o', 'n']
+```
+
+```python
+a=['I','love','python']
+print("".join(a)) # 각 요소를 공백없이 붙인다.
+print(" ".join(a)) # 요소사이에 공백을 추가.
+print("\n".join(a)) # 한줄에 하나씩.
+
+>>Ilovepython
+>>I love python
+>>I
+>>love
+>>python
 ```
 
 ---
