@@ -3,21 +3,17 @@ from heapq import heappush, heappop
 input = sys.stdin.readline
 
 n = int(input())
-schedule = []
+cups = []
 for _ in range(n):
     dead, cup = map(int, input().split())
-    schedule.append((dead, cup))
+    heappush(cups, (dead, cup))
 
-schedule.sort(key=lambda x: -x[0])
-min_heap = []
+heap = []
 
-while schedule:
-    dead, cup = schedule.pop()
-    heappush(min_heap, cup)
-    if dead < len(min_heap):
-        heappop(min_heap)
+while cups:
+    dead, cup = heappop(cups)
+    heappush(heap, cup)
+    if len(heap) > dead:
+        heappop(heap)
 
-print(sum(min_heap))
-    
-    
-        
+print(sum(heap))
