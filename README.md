@@ -162,6 +162,105 @@ print("\n".join(a)) # 한줄에 하나씩.
 >>python
 ```
 
+### upper, lower, title, capitalize, swapcase
+
+- upper은 모든 문자를 대문자로
+- lower은 모든 문자를 소문자로
+- title은 각 단어의 첫 글자를 대문자로, 나머지는 소문자로
+- capitalize는 첫 글자만 대문자로, 나머지는 소문자로
+- swapcase는 대문자는 소문자로, 소문자는 대문자로
+
+```python
+a = 'a,b,c,D,E'
+
+print(a.upper())
+# A,B,C,D,E
+
+print(a.lower())
+# a,b,c,d,e
+
+inputStr = "ByungJun And Jiwon"
+
+swapcaseStr = inputStr.swapcase()
+print(swapcaseStr)
+#bYUNGjUN aND jIWON
+```
+
+### count, find, index, startwith, endswith
+
+**count**
+
+- 먼저, count 함수는 특정 문자의 개수를 반환
+- count내에 두 번째 인자로 숫자를 지정해준다면, 해당 위치 인덱스를 시작점으로 탐색
+
+**find**
+
+- find 함수는 해당 문자가 처음으로 등장하는 인덱스를 반환
+- 해당 문자를 찾지 못하면 -1을 반환
+- 두 번째 인자에 숫자를 넣어주면, 해당 위치부터 탐색을 시작하여 가장 처음 해당 문자가 등장하는 인덱스를 반환
+
+**index**
+
+- index 함수는 find 함수와는 사용법이 거의 동일
+- 해당 문자를 찾지 못하면 -1을 반환하는 것이 아니라, 에러를 발생
+
+```python
+inputStr = "아기 판다와 어른 판다는 둘 다 판다입니다"
+
+print(inputStr.count("판다"))
+#3
+
+print(inputStr.find("판다"), inputStr.rfind("판다"), inputStr.find("판다", 6), inputStr.find("불곰"))
+#3 18 10 -1
+
+print(inputStr.index("판다"), inputStr.rindex("판다"), inputStr.index("판다", 6))
+#3 18 10
+
+print(inputStr.startswith("아기"), inputStr.startswith("사자"), inputStr.startswith("판다", 3), inputStr.endswith("판다입니다"))
+#True False True True
+```
+
+### isdigit, isalpha, isupper, islower
+
+- isdigit은 모든 문자열이 숫자이면 True
+- isalpha는 모두 알파벳이거나 한글이면 True
+- isupper, islower은 각각 모두 대문자, 소문자로 구성인지 여부로 True를 반환 (단, isupper, islower에서는 각각 소문자, 대문자만 안섞여있다면 이와 상관없는 숫자, 공백 등의 문자는 결과에 상관이 없습니다.)
+
+### strip, rstrip, lstrip, replace
+
+문자열에서 공백을 제거할 수 있는 함수들은 strip, rstrip, lstrip이 있으며,
+
+줄바꿈 문자(\n)이나 tab문자(\t) 등도 포함하여 제거가 가능합니다.
+
+- rstrip은 오른쪽 끝, lstrip은 왼쪽 끝의 공백을 제거
+- strip 함수는 양쪽 끝의 공백을 모두 제거
+
+```python
+a = '   abc   '
+print(a.strip()) # 'abc'
+print(a.lstrip()) # 'abc   '
+print(a.rstrip()) # '   abc'
+
+a = '*****abc***'
+print(a.strip('*')) # abc
+print(a.lstrip('*')) # abc***
+print(a.rstrip('*')) # *****abc
+
+a = '12321abc111'
+print(a.strip('123')) # abc
+print(a.lstrip('123')) # abc111
+print(a.rstrip('123')) # 12321abc
+```
+
+- replace 함수는 특정 문자를 다른 문자로 대체
+
+```python
+a = 'a,b,c,d,e'
+print(a.replace(',', '/')) # a/b/c/d/e
+print(a.replace(',', '/', 1)) # a/b,c,d,e
+print(a.replace(',', '/', 2)) # a/b/c,d,e
+```
+
 ---
 
 # Data Structure
