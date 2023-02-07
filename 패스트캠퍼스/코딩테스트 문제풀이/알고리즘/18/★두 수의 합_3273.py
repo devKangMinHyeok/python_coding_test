@@ -5,18 +5,20 @@ n = int(input())
 data = list(map(int, input().split()))
 x = int(input())
 
-count = 0
-targets = set()
+data.sort()
 
-for i in range(n):
-    target = x - data[i]
-    targets.add(target)
+start = 0
+end = n-1
+cnt = 0
 
-for i in range(n):
-    if data[i] in targets: count += 1
+while start < end:
+    sum = data[start] + data[end]
+    if sum > x:
+        end -= 1
+    elif sum < x:
+        start += 1
+    else:
+        cnt += 1
+        start += 1
 
-print(count // 2)
-
-"""
-투포인터 풀이도 가능
-"""
+print(cnt)
