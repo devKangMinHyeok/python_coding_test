@@ -1,22 +1,19 @@
 L, C = map(int, input().split())
-chars = list(map(str, input().split()))
-chars.sort()
-string = []
+data = list(map(str, input().split()))
 
-def dfs(x):
-    if len(string) == L: 
-        moem = 0
-        for s in string:
-            if s in ['a','e','i','o','u']:
-                moem += 1
-        if moem >= 1 and (L - moem) >= 2: print("".join(string))
-        return
+def dfs(x, crypto):
+    if x >= C: return
+    if len(crypto) == L:
+        mo = 0
+        for moem in ['a','e','i','o','u']:
+            if moem in crypto: mo += 1
+        za = L - mo
+        if mo >= 1 and za >= 2:
+            print(crypto)
+            return
     for i in range(x+1, C):
-        string.append(chars[i])
-        dfs(i)
-        string.pop()
-
-for i in range(C-L+1):
-    string.append(chars[i])
-    dfs(i)
-    string = []
+        dfs(i, crypto + data[i])
+    
+data.sort()
+for i in range(C):
+    dfs(i, data[i])

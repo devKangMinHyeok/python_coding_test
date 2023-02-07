@@ -1,22 +1,26 @@
-n = int(input())
+N = int(input())
 
-def check(cur_row):
-    for i in range(cur_row):
-        if row[i] == row[cur_row]: return False
-        if abs(row[i] - row[cur_row]) == cur_row - i: return False
+board = [-1] * N
+ans = 0
+
+def can(y,x):
+    for i in range(y):
+        if board[i] == x:
+            return False
+        if abs(y-i) == abs(x-board[i]):
+            return False
     return True
 
-def dfs(cur_row):
-    global answer
-    if cur_row == n:
-        answer += 1
+def dfs(y):
+    global ans
+    if y == N:
+        ans += 1
         return
-    for i in range(n):
-        row[cur_row] = i
-        if check(cur_row):
-            dfs(cur_row + 1)
+    for i in range(N):
+        if can(y, i):
+            board[y] = i
+            dfs(y+1)
+            board[y] = -1
 
-answer = 0
-row = [0] * n
 dfs(0)
-print(answer)
+print(ans)
