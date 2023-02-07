@@ -1,19 +1,29 @@
 from collections import deque
 
-n, k = map(int, input().split())
-num = input()
-num = deque(list(num))
+N, K = map(int, input().split())
+num = deque(list(input()))
+
 stack = []
-deleted = 0
+pop_cnt = 0
+
+if N == K:
+    print(0)
+    exit(0)
+    
 while num:
-    target = num.popleft()
-    while stack and target > stack[-1] and deleted < k:
-        stack.pop()
-        deleted += 1
-    stack.append(target)
-
-while stack and deleted < k:
+    if pop_cnt >= K:
+        stack.append(num.popleft())
+        continue
+    if not stack: stack.append(num.popleft())
+    else:
+        if stack[-1] >= num[0]:
+            stack.append(num.popleft())
+        else:
+            stack.pop()
+            pop_cnt += 1
+while pop_cnt < K:
     stack.pop()
-    deleted += 1
-
+    pop_cnt += 1
+    
 print("".join(stack))
+            
