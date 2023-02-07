@@ -528,6 +528,32 @@ result = list(filter(lambda x: (x % 13 == 0), my_list))
 
 ---
 
+### combination
+
+```python
+import itertools
+
+arr = ['A', 'B', 'C']
+nCr = itertools.combinations(arr, 2)
+print(list(nCr))
+
+# 결과 : [('A', 'B'), ('A', 'C'), ('B', 'C')]
+```
+
+### permutation
+
+```python
+import itertools
+
+arr = ['A', 'B', 'C']
+nPr = itertools.permutations(arr, 2)
+print(list(nPr))
+
+# 결과 : [('A', 'B'), ('A', 'C'), ('B', 'A'), ('B', 'C'), ('C', 'A'), ('C', 'B')]
+```
+
+---
+
 ### exit
 
 exit을 사용하면, 어디에서나 프로그램을 종료할 수 있다.
