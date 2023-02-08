@@ -2,29 +2,28 @@ import sys
 from heapq import heappush, heappop
 input = sys.stdin.readline
 
-n, k = map(int, input().split())
-golds = []
+N, K = map(int, input().split())
+stones = []
 bags = []
 
-for _ in range(n):
-    weight, value = map(int, input().split())
-    golds.append((weight, value))
+for _ in range(N):
+    M, V = map(int, input().split())
+    heappush(stones, (M,V))
+    
+for _ in range(K):
+    C = int(input())
+    bags.append(C)
 
-for _ in range(k):
-    max_weight = int(input())
-    bags.append(max_weight)
-
-golds.sort()
 bags.sort()
-
 heap = []
-i = 0
 answer = 0
 
 for bag in bags:
-    while i < len(golds) and golds[i][0] <= bag:
-        heappush(heap, -golds[i][1])
-        i += 1
-    if heap: answer += -heappop(heap)
+    while stones and bag >= stones[0][0]:
+        weight, value = heappop(stones)
+        heappush(heap, -value)
+    if heap:
+        answer += heappop(heap)
 
-print(answer)    
+print(-answer)
+    

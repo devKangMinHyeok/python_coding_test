@@ -1,18 +1,15 @@
-import sys
-input = sys.stdin.readline
-
 n, W = map(int, input().split())
-prices = []
+data = []
 for _ in range(n):
-    prices.append(int(input()))
+    s = int(input())
+    data.append(s)
 
 for i in range(n-1):
-    today = prices[i]
-    tomo = prices[i+1]
-    if today < tomo:
-        coins = W // today
-        W = W % today
-        W += coins * tomo
-        coins = 0
+    if data[i] < data[i+1]:
+        coin = W // data[i]
+        W = W % data[i]
+        W += data[i+1] * coin
 
 print(W)
+      
+          
