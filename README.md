@@ -554,6 +554,43 @@ print(list(nPr))
 
 ---
 
+### bisect
+
+```python
+from bisect import bisect_left, bisect_right
+
+nums = [0,1,2,3,4,5,6,7,8,9]
+n = 5
+
+print(bisect_left(nums, n))
+print(bisect_right(nums, n))
+
+'''
+결과값
+5
+6
+'''
+```
+
+```python
+from bisect import bisect_left, bisect_right
+
+nums = [4, 5, 5, 5, 5, 5, 5, 5, 5, 6]
+n = 5
+
+print(bisect_left(nums, n))
+print(bisect_right(nums, n))
+
+
+'''
+결과값
+1
+9
+'''
+```
+
+---
+
 ### exit
 
 exit을 사용하면, 어디에서나 프로그램을 종료할 수 있다.
