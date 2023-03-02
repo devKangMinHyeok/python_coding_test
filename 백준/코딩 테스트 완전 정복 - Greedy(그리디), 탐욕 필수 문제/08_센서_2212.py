@@ -9,13 +9,19 @@ if N == 1:
 
 data.sort()
 
+print(data)
+
 table = []
 
 for i in range(N-1):
     table.append(data[i+1] - data[i])
 
+print(table)
+
 table.sort()
 for _ in range(K-1):
     table.pop()
+    
+print(table)
 
 print(sum(table))
